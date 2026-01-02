@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class SoundFXManager : MonoBehaviour
 {
@@ -84,5 +85,36 @@ public class SoundFXManager : MonoBehaviour
 
         //Play the clip
         backGroundMusic.Play();
+    }
+
+    // ==========================
+    //        MUSIC STOP (NOT SUDDEN) API
+    // ==========================
+    public void FadeOutMusic(float duration = 1f)
+    {
+        // If no background music source is assigned, do nothing
+        if (backGroundMusic == null) return;
+
+        // Start fading out the music over the given duration
+        StartCoroutine(FadeOutRoutine(duration));
+    }
+
+    private IEnumerator FadeOutRoutine(float duration)
+    {
+        // Store the initial volume so it can be restored later
+        float startVol = backGroundMusic.volume;
+
+        // Gradually reduce the volume to zero over time
+        for (float t = 0f; t < duration; t += Time.deltaTime)
+        {
+            backGroundMusic.volume = Mathf.Lerp(startVol, 0f, t / duration);
+            yield return null;
+        }
+
+        // Stop the music once the fade-out is complete
+        backGroundMusic.Stop();
+
+        // Reset volume for the next time the music is played
+        backGroundMusic.volume = startVol;
     }
 }

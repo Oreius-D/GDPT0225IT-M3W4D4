@@ -180,6 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 10
   destroyOnDeath: 1
+  deathBoolName: IsDead
+  disableOnDeath:
+  - {fileID: 0}
+  collidersToDisable: []
   enemyDeathSoundClip: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
 --- !u!95 &-9035124807329409584
 Animator:

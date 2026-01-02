@@ -2,30 +2,33 @@
 
 public class WeaponPickup : MonoBehaviour
 {
-    [SerializeField] private GameObject weaponPrefab;   // prefab dell'arma da dare al player
-    [SerializeField] private Transform attachPoint;      // opzionale: punto dove attaccarla (se null, usa player)
+    [SerializeField] private GameObject weaponPrefab; // Weapon prefab to give to the player
+    [SerializeField] private Transform attachPoint;   // Optional: attachment point (defaults to player if null)
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Only react to the player
         if (!other.CompareTag("Player")) return;
 
+        // Determine where the weapon should be attached
         Transform parent = attachPoint != null ? attachPoint : other.transform;
 
-        // 1) Rimuovi arma/e già equipaggiata/e (se vuoi UNA sola arma)
+        // Remove already equipped weapon
         for (int i = parent.childCount - 1; i >= 0; i--)
         {
             Destroy(parent.GetChild(i).gameObject);
         }
 
-        // 2) Instanzia e attacca senza ereditare trasformazioni “strane”
+        // Instantiate and attach the weapon without inheriting unwanted transforms
         GameObject weaponInstance = Instantiate(weaponPrefab);
-        weaponInstance.transform.SetParent(parent, false); // false = usa transform locali puliti
+        weaponInstance.transform.SetParent(parent, false); // false = keep clean local transforms
         weaponInstance.transform.localPosition = Vector3.zero;
         weaponInstance.transform.localRotation = Quaternion.identity;
 
-        // 3) (opzionale) niente "(Clone)"
+        // Remove "(Clone)" from the instance name
         weaponInstance.name = weaponPrefab.name;
 
+        // Destroy the pickup object after being collected
         Destroy(gameObject);
     }
 }

@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: maxLife
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 703636055990917652, guid: 8d88c1719c180c04cb81070d3ea2c79b, type: 3}
+      propertyPath: disableOnDeath.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 703636055990917652, guid: 8d88c1719c180c04cb81070d3ea2c79b, type: 3}
+      propertyPath: disableOnDeath.Array.data[0]
+      value: 
+      objectReference: {fileID: 700411379577469196}
+    - target: {fileID: 703636055990917652, guid: 8d88c1719c180c04cb81070d3ea2c79b, type: 3}
+      propertyPath: disableOnDeath.Array.data[1]
+      value: 
+      objectReference: {fileID: 700411379577469196}
     - target: {fileID: 2834033794404355837, guid: 8d88c1719c180c04cb81070d3ea2c79b, type: 3}
       propertyPath: m_Name
       value: EnemyFast
@@ -73,3 +85,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d88c1719c180c04cb81070d3ea2c79b, type: 3}
+--- !u!58 &700411379577469196 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1488515439534337607, guid: 8d88c1719c180c04cb81070d3ea2c79b, type: 3}
+  m_PrefabInstance: {fileID: 2094200866574423883}
+  m_PrefabAsset: {fileID: 0}
